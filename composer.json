@@ -1,0 +1,32 @@
+{
+    "name": "dominicwatts/wordpresswidget",
+    "description": "Lightweight widget which you can use to load wordpress blog posts on your magento site with minimal setup by providing link to json feed and a few other parameters",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "dominic@xigen.co.uk",
+            "name": "Dominic Xigen"
+        }
+    ],
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        }
+    ],
+    "require": {
+        "magento/framework": "*",
+        "php": "~7.0.0||~7.1.0||~7.2.0||~7.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Xigen\\WordpressWidget\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}
