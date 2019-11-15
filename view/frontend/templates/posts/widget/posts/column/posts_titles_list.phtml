@@ -1,0 +1,50 @@
+<?php
+/**
+ * @author Xigen
+ */
+// phpcs:disable Magento2.Files.LineLength.MaxExceeded
+$postsCount = 0;
+?>
+<?php if ($posts = $block->getBlogPosts()) : ?>
+    <div class="block widget block-posts-titles">
+        <div class="block-title">
+            <strong><?= $block->escapeHtml(__('From the Blog')) ?></strong>
+        </div>
+        <div class="block-content">
+            <?php $suffix = $block->getNameInLayout(); ?>
+            <ol id="widget-posts-<?= $block->escapeHtmlAttr($suffix) ?>" 
+                class="product-items product-items-titles">
+                <?php foreach ($posts as $post) : ?>
+                    <?php
+                    $postsCount++;
+                    if ($block->getPostsCount() >= $postsCount) {
+                        continue;
+                    }
+                    ?>
+                    <li class="product-item">
+                        <?php if (isset($post['link'])) : ?>
+                        <a class="product-item-photo" 
+                           href="<?= $block->escapeUrl($post['link']); ?>"
+                           target="_blank"
+                           title="<?= $block->escapeHtmlAttr($post['title']['rendered']); ?>">
+                        <?php endif; ?>
+                        <p class="blog-post-title"><?= $block->escapeHtmlAttr($post['title']['rendered']); ?></p>
+                        <?php if (isset($post['link'])) : ?>
+                        </a>
+                        <?php endif; ?>
+                        <?php if (isset($post['content']['rendered'])) : ?>
+                        <p class="blog-post-excerpt">
+                            <?= /* @noEscape */  $block->tidyText($post['content']['rendered']); ?>
+                        </p>
+                        <?php endif; ?>
+                        <?php if (isset($post['link'])) : ?>
+                        <p class="blog-post-link">
+                            <?= /* @noEscape */ __("Click <a href='%1' target='_blank'>here</a> to read more", $block->escapeUrl($post['link'])); ?>
+                        </p>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ol>
+        </div>
+    </div>
+<?php endif; ?>

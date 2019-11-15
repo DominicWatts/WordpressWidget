@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget class="Xigen\WordpressWidget\Block\Widget\Posts" id="xigen_wordpresswidget_posts">
+        <label>WordPress Post List</label>
+        <description>List of WordPress posts</description>
+        <parameters>
+            <parameter name="json_feed" xsi:type="text" required="true" visible="true">
+                <label translate="true">JSON Feed</label>
+                <value><![CDATA[http://domain.com/wp-json/wp/v2/posts?per_page=10&_embed]]></value>
+            </parameter>
+            <parameter name="posts_count" xsi:type="text" required="true" visible="true">
+                <label translate="true">Number of Posts to Display</label>
+                <value>5</value>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="posts/widget/posts/content/posts_grid.phtml" selected="true">
+                        <label translate="true">WordPress Grid Template</label>
+                    </option>
+                    <option name="list" value="posts/widget/posts/content/posts_list.phtml">
+                        <label translate="true">WordPress List Template</label>
+                    </option>
+                    <option name="list_default"
+                            value="posts/widget/posts/column/posts_default_list.phtml">
+                        <label translate="true">WordPress Images and Titles Template</label>
+                    </option>
+                    <option name="list_titles"
+                            value="posts/widget/posts/column/posts_titles_list.phtml">
+                        <label translate="true">WordPress Titles Only Template</label>
+                    </option>
+                    <option name="list_images"
+                            value="posts/widget/posts/column/posts_images_list.phtml">
+                        <label translate="true">WordPress Featured Image Only Template</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="cache_lifetime" xsi:type="text" visible="true">
+                <label translate="true">Cache Lifetime (Seconds)</label>
+                <description translate="true">86400 by default, if not set. To refresh instantly, clear the Blocks HTML Output cache.</description>
+            </parameter>
+        </parameters>
+        <containers>
+            <container name="sidebar.main">
+                <template name="default" value="list_default"/>
+                <template name="titles_only" value="list_titles"/>
+                <template name="images_only" value="list_images"/>
+            </container>
+            <container name="content">
+                <template name="grid" value="default"/>
+                <template name="list" value="list"/>
+            </container>
+            <container name="sidebar.additional">
+                <template name="default" value="list_default"/>
+                <template name="titles_only" value="list_titles"/>
+                <template name="images_only" value="list_images"/>
+            </container>
+        </containers>
+    </widget>
+</widgets>
