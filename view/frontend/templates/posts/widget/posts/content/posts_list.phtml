@@ -2,5 +2,84 @@
 /**
  * @author Xigen
  */
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+// phpcs:disable Magento2.Files.LineLength.MaxExceeded
 ?>
-Todo
+<?php
+$type = 'widget-posts-list';
+$mode = 'list';
+$posts = $block->getBlogPosts();
+$title = __('From the Blog');
+$postsCount = 0;
+?>
+<?php if ($posts) : ?>
+    <div class="block widget block-posts-products <?= /* @noEscape */ $mode ?>">
+        <div class="block-title">
+            <strong role="heading" aria-level="2"><?= $block->escapeHtml($title) ?></strong>
+        </div>
+        <div class="block-content">
+            <div class="products-<?= /* @noEscape */ $mode ?> <?= /* @noEscape */ $mode ?>">
+                <ol class="product-items <?= /* @noEscape */ $type ?>">
+                    <?php $iterator = 1; ?>
+                    <?php foreach ($posts as $post) : ?>
+                        <?= /* @escapeNotVerified */ ($iterator++ == 1) ? '<li class="product-item">' : '</li><li class="product-item">' ?>
+                        <div class="product-item-info">
+                            <?php
+                            $postsCount++;
+                            if ($block->getPostsCount() >= $postsCount) {
+                                continue;
+                            }
+                            ?>
+                            <?php if (isset($post['link'])) : ?>
+                            <a href="<?= $block->escapeUrl($post['link']); ?>" class="product-item-photo">
+                            <?php endif; ?>
+                            <?php if (isset($post['_embedded']['wp:featuredmedia'][0]['media_details']["sizes"]["post-thumbnail"])) : ?>
+                                <img src="<?= /* @noEscape */ $post['_embedded']['wp:featuredmedia'][0]['media_details']["sizes"]["post-thumbnail"]["source_url"]; ?>" 
+                                     alt="<?= $block->escapeHtmlAttr($post['title']['rendered']); ?>"
+                                     title="<?= $block->escapeHtmlAttr($post['title']['rendered']); ?>" />
+                            <?php endif; ?>                             
+                            <?php if (isset($post['link'])) : ?>
+                            </a>
+                            <?php endif; ?>
+                            <div class="product-item-details">
+                                <p class="blog-post-title">
+                                    <strong class="product-item-name">
+                                        <?php if (isset($post['link'])) : ?>
+                                        <a title="<?= $block->escapeHtmlAttr($post['title']['rendered']); ?>"
+                                           href="<?= $block->escapeUrl($post['link']); ?>"
+                                           class="product-item-link">
+                                        <?php endif; ?>
+                                            <?= $block->escapeHtmlAttr($post['title']['rendered']); ?>
+                                        <?php if (isset($post['link'])) : ?>
+                                        </a>
+                                        <?php endif; ?>
+                                    </strong>
+                                </p>
+                                <div class="product-item-actions">
+                                    <div class="actions-primary">                      
+                                        <?php if (isset($post['link'])) : ?>
+                                        <p class="blog-post-link">
+                                            <a title="<?= $block->escapeHtmlAttr($post['title']['rendered']); ?>"
+                                               href="<?= $block->escapeUrl($post['link']); ?>"
+                                               target="_blank"
+                                               class="product-item-link">
+                                                <?= $block->escapeHtml(__("Read More")); ?>
+                                            </a>
+                                        </p>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <div class="product-item-description">
+                                    <p class="blog-post-excerpt">
+                                        <?= /* @noEscape */ $block->tidyText($post['content']['rendered']); ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <?= ($iterator == count($posts)+1) ? '</li>' : '' ?>
+                    <?php endforeach ?>
+                </ol>
+            </div>
+        </div>
+    </div>
+<?php endif;?>

@@ -1,12 +1,11 @@
 <?php
 
-
 namespace Xigen\WordpressWidget\Block\Widget;
 
 /**
  * Posts class
  */
-class Posts extends \Magento\Framework\View\Element\Template
+class Posts extends \Magento\Framework\View\Element\Template implements \Magento\Widget\Block\BlockInterface
 {
     /**
      * Default value for products per page
@@ -137,8 +136,7 @@ class Posts extends \Magento\Framework\View\Element\Template
         if ($len > $n) {
             preg_match('/(.{' . $n . '}.*?)\b/', strip_tags($str), $matches);
             return rtrim($matches[1]) . $delim;
-        } else {
-            return $str;
         }
+        return $str;
     }
 }

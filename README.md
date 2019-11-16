@@ -24,7 +24,7 @@ Give your widget a name, assign to store and give a sort.
 
 ### Under `Layout Properties`
 
-Sidebar Additional / Main Layouts include
+`Sidebar Additional` / `Sidebar Main` Layouts include:
 
   - WordPress Images and Titles Template
 
@@ -37,6 +37,16 @@ Sidebar Additional / Main Layouts include
   - WordPress Featured Image Only Template
   
 ![WordPress Featured Image Only Template](https://i.snipboard.io/uVnret.jpg)  
+
+`Main Content Area` layouts include:
+
+  - Wordpress Grid Template
+
+![Wordpress Grid Template](https://i.snipboard.io/MaUfSj.jpg) 
+
+  - Wordpress List Template
+
+![Wordpress List Template](https://i.snipboard.io/2Rwzv0.jpg) 
 
 ### Under `Widget Options`
   
