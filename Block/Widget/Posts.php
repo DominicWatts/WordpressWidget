@@ -5,7 +5,7 @@ namespace Xigen\WordpressWidget\Block\Widget;
 /**
  * Posts class
  */
-class Posts extends \Magento\Framework\View\Element\Template
+class Posts extends \Magento\Framework\View\Element\Template implements \Magento\Widget\Block\BlockInterface
 {
     /**
      * Default value for products per page

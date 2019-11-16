@@ -2,7 +2,7 @@
     "name": "dominicwatts/wordpresswidget",
     "description": "Lightweight widget which you can use to load wordpress blog posts on your magento site with minimal setup by providing link to json feed and a few other parameters",
     "type": "magento2-module",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": "proprietary",
     "authors": [
         {
